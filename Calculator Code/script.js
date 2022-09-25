@@ -1,39 +1,39 @@
-function plus(){
-    var num1,num2, result;
-
-    num1 = document.getElementById(`n1`).value;
-        num1 = parseInt(num1);
-    num2 = document.getElementById(`n2`).value;
-        num2 =parseInt(num2);
-    result = num1 + num2;
-    document.getElementById(`out`).innerHTML = result;
-}
-function minus() {
-    var num1, num2, result;
-
-    num1 = document.getElementById(`n1`).value;
-        num1 = parseInt(num1);
-    num2 = document.getElementById(`n2`).value;
-        num2 =parseInt(num2);
-    result = num1 - num2;
-    document.getElementById(`out`).innerHTML = result;
-}
-function multiply(){
-    var num1,num2,result;
-    num1 = document.getElementById(`n1`).value;
-        num1 = parseInt(num1);
-    num2 = document.getElementById(`n2`).value;
-        num2 =parseInt(num2);
-    result = num1 * num2;
-    document.getElementById(`out`).innerHTML = result;
-
-}
-function share(){
-    var num1,num2,result;
-    num1 = document.getElementById(`n1`).value;
-        num1 = parseInt(num1);
-    num2 = document.getElementById(`n2`).value;
-        num2 =parseInt(num2);
-    result = num1 / num2;
-    document.getElementById(`out`).innerHTML = result;
-}
+document.querySelector(".buttons").onclick=function(){
+    let oper=["+","-","/","*","."];
+    let target=event.target
+     let value = ""
+     let input = document.querySelector("#exp");
+    if(target.className =="number"){
+     
+      if(input.value =="0"){
+         input.value=value;
+          input.value+=target.innerHTML;
+          }
+     else{
+         input.value+=target.innerHTML
+     }
+     }else if(target.className=="operation"){
+         let exp=input.value
+         let lastChar=exp[exp.length-1]   
+         value=target.innerHTML;
+         if(oper.indexOf(lastChar)!=-1){
+             exp=exp.replace(/.$/,value);
+             input.value=exp;
+         } else{
+             input.value+=value;
+         }
+     }else if(target.className=="calculation"){
+         
+         let result=eval(input.value);
+         input.value=result;
+ 
+     } else if(target.className=="clear"){
+         input.value="0"
+     }else if(target.className=="clear_one"){
+         input.value=input.value.substring(0,input.value.length-1);
+         if(input.value.length==0){
+             input.value="0";
+         }
+     }
+     
+ } 
